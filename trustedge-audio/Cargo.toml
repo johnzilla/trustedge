@@ -23,8 +23,12 @@ name = "trustedge-server"
 path = "src/bin/trustedge-server.rs"
 
 [[bin]]
-name = "trustedge-client" 
+name = "trustedge-client"
 path = "src/bin/trustedge-client.rs"
+
+[[bin]]
+name = "trustedge-verify"
+path = "src/bin/verify.rs"
 
 [dependencies]
 aead = "0.5"

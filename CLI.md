@@ -14,6 +14,7 @@ Complete command-line interface documentation for TrustEdge.
 - [Error Handling](#error-handling)
 - [Complete Workflows](#complete-workflows)
 - [Network Operations](#network-operations)
+- [Verification](#verification)
 
 ---
 
@@ -268,6 +269,30 @@ $ trustedge-audio \
 Connecting to TrustEdge server at 127.0.0.1:8080
 Connected successfully!
 Sent chunk 1/1 (4096 bytes)
+```
+
+## Verification
+
+The `trustedge-verify` binary checks Ed25519 signatures and AES-GCM tags in a `.trst`
+envelope. It reconstructs the additional authenticated data (AAD) for each record
+and validates the stream without emitting plaintext. Verification semantics are
+defined in [PROTOCOL.md](./PROTOCOL.md).
+
+### Example
+
+```bash
+$ trustedge-verify --input encrypted.trst --key-hex 012345...cdef
+Record 1 verified (ts_ms=1723372036854)
+Verified 1 records.
+```
+
+### JSON output
+
+```bash
+$ trustedge-verify --input encrypted.trst --key-hex 012345...cdef --json
+[
+  {"seq":1,"ts_ms":1723372036854}
+]
 ```
 
 ---
